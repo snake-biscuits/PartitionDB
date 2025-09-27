@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js" type="application/javascript"></script>
+    <title>PartitionDB</title>
+  </head>
+  <body>
+    <header>
+      <h1>PartitionDB</h1>
+      <p><b>TODO:</b> Description</p>
+    </header>
+    <br/>
+      <div class="main-ui">
+      <div class="drives">
+        <div class="from">
+          <h3>From:</h3>
+          <div class="controls">
+            <select>
+              <option>-- Select Drive --</option>
+              <option>A:</option>
+              <option>B:</option>
+            </select>
+            <button>+</button>
+          </div>
+          <div class="drive"></div>
+        </div>
+        <div class="to">
+          <h3>To:</h3>
+          <div class="controls">
+            <select>
+              <option>-- Select Drive --</option>
+              <option>A:</option>
+              <option>B:</option>
+            </select>
+            <button>+</button>
+          </div>
+          <div class="drive" style="grid-template-rows: repeat(7, 1fr); grid-template-columns: repeat(3, 1fr);">
+            <div style="grid-column: 1; grid-row: 1;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="messages">
+        <code id="log">console.log() gets mirrored here</code>
+      </div>
+    </div>
+  </body>
+</html>
