@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="script.js" type="application/javascript"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="colour.js"></script>
+    <script type="module" src="partition.js"></script>
     <title>PartitionDB</title>
   </head>
-  <body onload="main();">
+  <body>
     <header>
       <h1>PartitionDB</h1>
       <p><b>TODO:</b> Description</p>
@@ -41,8 +43,9 @@
         </div>
       </div>
       <div class="messages">
-        <code id="log">console.log() gets mirrored here</code>
+        <code id="log">console stdout &amp; stderr get mirrored here for mobile</code>
       </div>
     </div>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
