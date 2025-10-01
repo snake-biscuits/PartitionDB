@@ -2,21 +2,24 @@
 <html lang="en-AU">
   <head>
     <meta charset="utf-8" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script type="module" src="script.js"></script>
-    <script type="module" src="colour.js"></script>
-    <script type="module" src="partition.js"></script>
+    <link type="text/css" href="/style.css" rel="stylesheet" />
+    <script type="module" src="/script.js"></script>
+    <script type="module" src="/modules/colour.js"></script>
+    <script type="module" src="/modules/partition.js"></script>
     <title>PartitionDB</title>
   </head>
   <body>
     <header>
       <h1>PartitionDB</h1>
-      <p><b>TODO:</b> Description</p>
+      <p>Graphical Storage Organiser</p>
     </header>
     <br/>
-      <div class="main-ui">
-      <div class="drives">
-        <div class="from">
+    <div class="main-ui">
+      <div id="dropzone">
+        <p><code>drop .json here</code></p>
+      </div>
+      <div id="drives">
+        <div id="lhs">
           <h3>From:</h3>
           <div class="controls">
             <select>
@@ -26,9 +29,11 @@
             </select>
             <button>+</button>
           </div>
-          <div class="drive"></div>
+          <div class="drive">
+            <!-- populated by script.js -->
+          </div>
         </div>
-        <div class="to">
+        <div id="rhs">
           <h3>To:</h3>
           <div class="controls">
             <select>
@@ -39,11 +44,12 @@
             <button>+</button>
           </div>
           <div class="drive">
+            <!-- populated by script.js -->
           </div>
         </div>
       </div>
-      <div class="messages">
-        <code id="log">console stdout &amp; stderr get mirrored here for mobile</code>
+      <div id="messages">
+        <code style="color: #7CA">console.log for mobile:</code>
       </div>
     </div>
     <script type="module" src="script.js"></script>

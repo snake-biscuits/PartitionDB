@@ -15,23 +15,38 @@ header {
 }
 
 h1 { color: #CCC; }
+h3 { color: #CCC; }
 p  { color: #BBB; }
+code {
+  font-weight: bold;
+  font-size: 16px;
+}
 
 
-.main-ui {
+#main-ui {
   display: grid;
-  grid-template-rows: 7fr 1fr;
+  grid-template-rows: 1fr 7fr 1fr;
   gap: 2%;
 }
 
-.drives {
+#dropzone {
+  display: grid;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: center;
+  border-radius: 1.25rem;
+  border: 3px dashed #7AC;
+  /* NOTE: can use border-image to use a gradient, but negates radius */
+}
+
+#drives {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5%;
   padding: 2.5%
 }
 
-.drives > div {
+#drives > div {
   display: grid;
   grid-template-rows: 1fr 2fr 17fr;
   border-radius: 2rem;
@@ -39,11 +54,10 @@ p  { color: #BBB; }
 
 }
 
-.from { background-color: oklch(45% 7% 90deg); }
-.to { background-color: oklch(45% 7% 230deg); }
+#lhs { background-color: oklch(45% 7% 90deg); }
+#rhs { background-color: oklch(45% 7% 230deg); }
 
-h3 {
-  color: #CCC;
+#drives > div > h3 {
   text-align: center;
   margin: 0%;
 }
@@ -51,9 +65,6 @@ h3 {
 .controls {
   text-align: center;
   padding: .5rem;
-  /*
-   * padding-bottom: 1rem;
-   */
 }
 
 select, ::picker(select) { appearance: base-select; }
@@ -81,13 +92,11 @@ select, ::picker(select) { appearance: base-select; }
 }
 
 /* log */
-.messages {
+#messages {
   background-color: #111;
   padding-left: .25rem;
   padding-right: .25rem;
-}
-
-.messages > #log {
   overflow: scroll;
-  color: #CCD;
+  min-height: 10rem;
+  max-height: 10rem;
 }

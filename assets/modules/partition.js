@@ -104,6 +104,7 @@ class DataArea {
       "linear-gradient(to right,  #999, transparent 25%)",
       "linear-gradient(to top,    #999, transparent 25%)",
       "linear-gradient(to bottom, #999, transparent 25%)"];
+    // let background = [`radial-gradient(${colour}, #222)`]
     return out.join(" ") + ";" + ` background: ${background.join(", ")};`;
   }
 
