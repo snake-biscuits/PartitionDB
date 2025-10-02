@@ -73,17 +73,20 @@ function notImplemented(msg=null) {
 
 
 function set_drive(drive, index = -1) {
+  mirror_log(`drive.label=${drive.label}, index=${index}`);
   // add drive to drives
-  let option = document.createElement("option")
-  option.textContent = drive.label;
+  let lhs_option = document.createElement("option");
+  lhs_option.textContent = drive.label;
+  let rhs_option = document.createElement("option");
+  rhs_option.textContent = drive.label;
   if (index == -1) {  // append
     index = drives.length;
     drives.push(drive);
-    lhs_sel.appendChild(option);
-    rhs_sel.appendChild(option);
+    lhs_sel.appendChild(lhs_option);
+    rhs_sel.appendChild(rhs_option);
   } else {  // override
-    lhs_sel.children[index].replaceWith(option)
-    rhs_sel.children[index].replaceWith(option)
+    lhs_sel.children[index].replaceWith(lhs_option);
+    rhs_sel.children[index].replaceWith(rhs_option);
   }
   return index;
 }
@@ -93,7 +96,30 @@ function load_drives(text) {
   let json = JSON.parse(text);
   // TODO: mirror_log json loading errors
   drives = json.map((j) => DataArea.from_json(j));
-  drives.forEach(new_drive);
+
+  drives.forEach(
+    (d, i) => {
+      i += 1;
+      let lhs_option = document.createElement("option");
+      lhs_option.textContent = d.label;
+      let rhs_option = document.createElement("option");
+      rhs_option.textContent = d.label;
+      if (lhs_sel.children[i] !== undefined) {  // override
+        lhs_sel.children[i].replaceWith(lhs_option);
+        rhs_sel.children[i].replaceWith(rhs_option);
+      } else {  // append
+        lhs_sel.appendChild(lhs_option);
+        rhs_sel.appendChild(rhs_option);
+      }
+  });
+  lhs_sel.selectedIndex = 0;
+  rhs_sel.selectedIndex = 0;
+  if (lhs_div.firstElementChild !== null) {
+    lhs_div.removeChild(lhs_div.firstElementChild);
+  }
+  if (rhs_div.firstElementChild !== null) {
+    rhs_div.removeChild(rhs_div.firstElementChild);
+  }
 }
 
 
@@ -145,7 +171,8 @@ dropzone.addEventListener("drop", dropfunc);
 // NOTE: would be nice if we didn't have to duplicate so much code
 
 // drive selection
-lhs_sel.onchange = (change) => {
+lhs_sel.onchange = (e) => {
+  e.preventDefault();
   let index = lhs_sel.selectedIndex - 1;
   if (index !== -1) {
     view_drive(lhs_div, index);
@@ -154,7 +181,8 @@ lhs_sel.onchange = (change) => {
   }
 }
 
-rhs_sel.onchange = (change) => {
+rhs_sel.onchange = (e) => {
+  e.preventDefault();
   let index = rhs_sel.selectedIndex - 1;
   if (index !== -1) {
     view_drive(rhs_div, index);
