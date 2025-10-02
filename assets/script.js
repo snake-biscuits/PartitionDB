@@ -50,21 +50,25 @@ let drives = [  // test data
   new DataArea("B:/", 512)];
 
 
-// NOTE: could capture & wrap console.log & error
 function mirror_log(data, colour="#CDC") {
-  console.log(data);
   log.appendChild(document.createElement("br"));
   let line = document.createElement("code");
   line.textContent = data;
   line.style.color = colour;
   log.appendChild(line);
+  console.log(data);
+}
+
+
+function mirror_error(msg) {
+  mirror_log(msg, "#C77");
+  console.error(msg);
 }
 
 
 function notImplemented(msg=null) {
   msg = (msg !== null) ? `notImplemented: ${msg}` : "notImplemented";
-  mirror_log(msg, "#C77");
-  console.error(msg);  // gives us a traceback
+  mirror_error(msg);
 }
 
 
@@ -78,8 +82,8 @@ function set_drive(drive, index = -1) {
     lhs_sel.appendChild(option);
     rhs_sel.appendChild(option);
   } else {  // override
-    notImplemented("set_drive override");
-    console.error()
+    lhs_sel.children[index].replaceWith(option)
+    rhs_sel.children[index].replaceWith(option)
   }
   return index;
 }
@@ -117,7 +121,7 @@ function dropfunc(e) {
           load_drives(reader.result);
         };
         reader.onerror = () => {
-          mirror_log(`Failed to load: ${file.name}`, "#C77");
+          mirror_error(`Failed to load: ${file.name}`);
         }
         reader.readAsText(file);
       // raw .json text
